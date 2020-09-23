@@ -1,5 +1,10 @@
 package br.com.backendmnp3r.dao;
 
-public interface UsuarioDAO {
+import org.springframework.data.repository.CrudRepository;
 
+import br.com.backendmnp3r.beans.Usuario;
+
+public interface UsuarioDAO extends CrudRepository<Usuario, Integer>  {
+
+	Usuario findbyracfAndSenha(String ra, String se);
 }
