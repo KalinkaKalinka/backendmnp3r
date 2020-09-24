@@ -1,11 +1,17 @@
 package br.com.backendmnp3r.beans;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table (name = "itmn232_usuario")
@@ -18,26 +24,36 @@ public class Usuario {
 @Column(name ="id")
 private int id;
 
-@Column(name ="nome", length=60)
+@Column(name ="nome", length=100)
 private String nome;
 
-@Column(name ="email", length=90)
+@Column(name ="email", length=100)
 private String email;
 
-@Column(name ="racf", length=6)
+@Column(name ="racf", length=7)
 private String racf;
 
-@Column(name ="senha", length=30)
+@Column(name ="senha", length=50)
 private String senha;
 
-@Column(name ="linkfoto", length=120)
+@Column(name ="linkfoto", length=255)
 private String linkfoto;
 
 @Column(name ="gestor")
 private int gestor;
 
+@JsonIgnoreProperties("idusuario")
+@OneToMany(mappedBy ="idusuario", cascade =CascadeType.ALL) 
+private List<Ocorrencia> ocorrencias;
+//devemos atualizar o constructor?
 
+public List<Ocorrencia> getOcorrencias() {
+	return ocorrencias;
+}
 
+public void setOcorrencias(List<Ocorrencia> ocorrencias) {
+	this.ocorrencias = ocorrencias;
+}
 
 public Usuario() {
 	super();
