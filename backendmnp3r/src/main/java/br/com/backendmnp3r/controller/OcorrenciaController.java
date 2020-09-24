@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.backendmnp3r.beans.Ocorrencia;
@@ -47,5 +49,21 @@ public class OcorrenciaController {
 		return ResponseEntity.ok(resultado);
 	}
 	
+	@PostMapping("/gravarcorrencia")
+	public ResponseEntity<Ocorrencia> gravar (@RequestBody Ocorrencia ocorrencia){
+		try {
+			Ocorrencia resposta = dao.findById(ocorrencia.getNumseq()).orElse(null);
+			resposta.setIdatividade(ocorrencia.getIdatividade());
+			resposta.setDescricao(ocorrencia.getDescricao());
+			resposta.setPontomanual(ocorrencia.getPontomanual());
+			resposta.setStatus(ocorrencia.getStatus());
+			
+			dao.save(resposta);
+			return ResponseEntity.ok(resposta);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(403).build();
+		}
+	}
 	
 }
