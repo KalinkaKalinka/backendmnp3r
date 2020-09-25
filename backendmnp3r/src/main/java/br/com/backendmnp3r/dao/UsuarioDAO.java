@@ -7,4 +7,5 @@ import br.com.backendmnp3r.beans.Usuario;
 public interface UsuarioDAO extends CrudRepository<Usuario, Integer>  {
 
 	Usuario findByRacfAndSenha(String ra, String se);
+	
 }

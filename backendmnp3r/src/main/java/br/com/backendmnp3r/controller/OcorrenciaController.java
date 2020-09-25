@@ -40,7 +40,7 @@ public class OcorrenciaController {
 	}
 	
 	@GetMapping("/status/{stat}")
-	public ResponseEntity<ArrayList<Ocorrencia>> getOcorrencia(@PathVariable int stat)
+	public ResponseEntity<ArrayList<Ocorrencia>> getStatus(@PathVariable int stat)
 	{
 		ArrayList<Ocorrencia> resultado = dao.findByStatus(stat);
 		if (resultado.size()==0) {
@@ -48,6 +48,8 @@ public class OcorrenciaController {
 		}
 		return ResponseEntity.ok(resultado);
 	}
+	
+	
 	
 	@PostMapping("/gravarcorrencia")
 	public ResponseEntity<Ocorrencia> gravar (@RequestBody Ocorrencia ocorrencia){

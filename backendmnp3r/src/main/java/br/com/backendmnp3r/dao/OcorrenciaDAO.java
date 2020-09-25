@@ -9,4 +9,6 @@ import br.com.backendmnp3r.beans.Ocorrencia;
 public interface OcorrenciaDAO extends CrudRepository<Ocorrencia, Integer> {
 
 	ArrayList<Ocorrencia> findByStatus(int status);
+	
+	
 }
